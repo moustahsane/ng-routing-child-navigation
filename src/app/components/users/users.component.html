@@ -1,0 +1,29 @@
+<div class="card">
+        <div class="card-body" [hidden]="hideParent()">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Login</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Registration date</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-active" *ngFor="let user of (users$ |async)">
+                        <th scope="row">{{user.login.username}}</th>
+                        <td>{{user.name.first +" "+user.name.last}}</td>
+                        <td>{{user.registered.date | date}}</td>
+                        <td><button type="button" class="btn btn-primary"><a class="nav-link"
+                                    [routerLink]="user.login.uuid">Details</a></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+</div>
+
+
+<div [hidden]="!hideParent()">
+    <router-outlet> </router-outlet>
+</div>
